@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Music Playlist</title>
+</head>
+<body>
+    <div class="top">
+        <header>
+            <div class="logo">
+                <h1>yfitops</h1>
+            </div>
+            <nav>
+                <a href="#classic" class="nav-item">Classic</a>
+                <a href="#blues" class="nav-item">Blues</a>
+                <a href="#pop" class="nav-item">Pop</a>
+                <a href="#jazz" class="nav-item">Jazz</a>
+                <a href="#rock" class="nav-item">Rock</a>
+                <a href="#create-playlist" class="nav-item-playlist">Create Playlist</a>
+            </nav>
+            <div class="search">
+                <div class="search-container">
+                    <button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
+                    <input type="text" class="input-search" placeholder="Search">
+                </div>
+            </div>
+        </header>
+
+        <div class="recommendation-song">
+            <div class="song-image">
+                <img src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+            </div>
+            <div class="song-content">
+                <h4>Recommendation</h4>
+                <h1>Hard 2 Face Reality</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi architecto nesciunt quidem repudiandae! Amet dolorem sequi eligendi sit quo id? Quas in, cum fugit facere vel voluptatem ex obcaecati soluta.</p>
+                <p>Created by <a href="https://en.wikipedia.org/wiki/Poo_Bear" target="_blank" class="recommendation-artist">Poo Bear</a>. 12 Songs, 29 hr 34 min</p>
+                <div class="btn-recommendation">
+                    <div>
+                        <button class="btn-play">Play it</button>
+                    </div>
+                    <div>
+                        <button class="btn-more">...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="music-genre">
+            <div class="wrapper">
+                <section class="classic" id="classic">
+                    <h2 class="genre-title">Classic Genre</h2>
+                    <div class="items">
+                        <ul>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Symphony No. 40 in G Minor</p>
+                                <p class="artist">Wolfgang Amadeus Mozart</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Symphony No. 40 in G Minor</p>
+                                <p class="artist">Wolfgang Amadeus Mozart</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Symphony No. 40 in G Minor</p>
+                                <p class="artist">Wolfgang Amadeus Mozart</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Symphony No. 40 in G Minor</p>
+                                <p class="artist">Wolfgang Amadeus Mozart</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Symphony No. 40 in G Minor</p>
+                                <p class="artist">Wolfgang Amadeus Mozart</p>
+                            </a>
+                        </ul>
+                    </div>
+                </section>
+                <section class="blues" id="blues">
+                    <h2 class="genre-title">Blues Genre</h2>
+                    <div class="items">
+                        <ul>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">The Thrill Is Gone</p>
+                                <p class="artist">B.B. King</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">The Thrill Is Gone</p>
+                                <p class="artist">B.B. King</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">The Thrill Is Gone</p>
+                                <p class="artist">B.B. King</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">The Thrill Is Gone</p>
+                                <p class="artist">B.B. King</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">The Thrill Is Gone</p>
+                                <p class="artist">B.B. King</p>
+                            </a>
+                        </ul>
+                    </div>
+                </section>
+                <section class="pop" id="pop">
+                    <h2 class="genre-title">Pop Genre</h2>
+                    <div class="items">
+                        <ul>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Orang Yang Sama</p>
+                                <p class="artist">Virgoun</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Orang Yang Sama</p>
+                                <p class="artist">Virgoun</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Orang Yang Sama</p>
+                                <p class="artist">Virgoun</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Orang Yang Sama</p>
+                                <p class="artist">Virgoun</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Orang Yang Sama</p>
+                                <p class="artist">Virgoun</p>
+                            </a>
+                        </ul>
+                    </div>
+                </section>
+                <section class="jazz" id="jazz">
+                    <h2 class="genre-title">Jazz Genre</h2>
+                    <div class="items">
+                        <ul>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Berdistraksi</p>
+                                <p class="artist">Danilla</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Berdistraksi</p>
+                                <p class="artist">Danilla</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Berdistraksi</p>
+                                <p class="artist">Danilla</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Berdistraksi</p>
+                                <p class="artist">Danilla</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Berdistraksi</p>
+                                <p class="artist">Danilla</p>
+                            </a>
+                        </ul>
+                    </div>
+                </section>
+                <section class="rock" id="rock">
+                    <h2 class="genre-title">Rock Genre</h2>
+                    <div class="items">
+                        <ul>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Welcome to the Jungle</p>
+                                <p class="artist">Guns N' Roses</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Welcome to the Jungle</p>
+                                <p class="artist">Guns N' Roses</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Welcome to the Jungle</p>
+                                <p class="artist">Guns N' Roses</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Welcome to the Jungle</p>
+                                <p class="artist">Guns N' Roses</p>
+                            </a>
+                            <a class="list-song" href="#">
+                                <img class="image" src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
+                                <p class="title">Welcome to the Jungle</p>
+                                <p class="artist">Guns N' Roses</p>
+                            </a>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="create-playlist" id="create-playlist">
+            <div class="wrapper">
+                <h3>Create Playlist</h3>
+                <div class="playlist-form">
+                    <form name="myform" onsubmit="return validateform()">
+                        <p>Title Playlist</p>
+                        <input type="text" name="title" class="title-form">
+                        <p>Description</p>
+                        <textarea type="text" name="description" class="description-form"></textarea><br><br>
+                        <button class="submit-form">Submit</button>
+                        <!-- <input type="submit" class="submit-form"> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
