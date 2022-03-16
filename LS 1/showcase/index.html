@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Showcase</title>
+</head>
+<body>
+    <main>
+        <div class="table-wrapper">
+            <table id="myTable">
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                </tr>
+              </table>
+        </div>
+        Rata-rata umur mereka adalah: 
+        <span id="avgAge" class="avgAge"></span>
+        <br><br>
+        <button onclick="addData()" class="btn-add" type="button">Click me</button>
+        <button onclick="averageAge()" class="btn-avg" type="button">Hitung rata-rata</button>
+    </main>
+
+    <script>
+        const students = [
+            {name: "Alice", age: 20},
+            {name: "Bob", age: 21},
+            {name: "Jane", age: 20},
+        ]
+
+        const numbers = [1, 2, 3];
+
+        function addData() {
+            var table = document.getElementById("myTable");
+            var row = table.insertRow(1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+
+            students.forEach((student) => {
+                cell1.innerHTML = student.name;
+                cell2.innerHTML = student.age;
+
+                console.log(student.name);
+            })
+        }
+
+        function studentsAgeReducer(acc, student) {
+            return acc + student.age;
+        }
+
+        function averageAge() {
+
+            const totalAge = students.reduce(studentsAgeReducer, 0);
+            const avgAge = totalAge / students.length;
+            var avgData = document.getElementById("avgAge").innerHTML = avgAge;
+        }
+    </script>
+</body>
+</html>
