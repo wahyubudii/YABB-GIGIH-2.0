@@ -21,7 +21,7 @@
         <span id="avgAge" class="avgAge"></span>
         <br><br>
         <button onclick="addData()" class="btn" type="button">Lihat Siswa</button>
-        <button onclick="averageAge()" class="btn" type="button">Hitung rata-rata</button>
+        <button onclick="asyncAverageAge()" class="btn" type="button">Hitung rata-rata</button>
     </main>
 
     <script>
@@ -55,6 +55,26 @@
             const totalAge = students.reduce(studentsAgeReducer, 0);
             const avgAge = totalAge / students.length;
             document.getElementById("avgAge").innerHTML = avgAge;
+        }
+
+        // Showcase Livesession 2
+        async function asyncAverageAge() {
+            const totalAge = await students.reduce(studentsAgeReducer, 0);
+            const avgAge = await totalAge / students.length;
+
+            new Promise((resolve, reject) => {
+                console.log("calculation start")
+                console.log("second call started")
+                setTimeout((resolve) => {
+                    console.log("second call finished")
+                    console.log("third call started")
+                }, 2000)
+                setTimeout((resolve) => {
+                    console.log(`age is: ${avgAge}`)
+                    document.getElementById("avgAge").innerHTML = avgAge;
+                    console.log("third call finished")
+                }, 5000)
+            })
         }
     </script>
 </body>

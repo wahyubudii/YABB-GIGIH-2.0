@@ -1,284 +1,295 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 * {
-    text-decoration: none;
-    padding: 0;
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 html {
-    padding: 0;
-    margin: 0;
-    scroll-behavior: smooth;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
 }
 
 body {
-    background-color: #222831;
+  background-color: #222831;
+}
+
+section {
+  margin: 0;
+  scroll-margin-top: 9em;
 }
 
 header {
-    width: 100%;
-    float: top;
-    z-index: 10;
-    position: fixed;
-    padding: 1rem 0;
-    background-color: #222831;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  float: top;
+  z-index: 10;
+  position: fixed;
+  padding: 1rem 0;
+  background-color: #222831;
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo {
-    float: left;
-    color: #EEEEEE;
-    padding-left: 25rem;
-    font-size: 24px;
+  float: left;
+  color: #eeeeee;
+  padding-left: 25rem;
+  font-size: 24px;
 }
 nav {
-    margin: auto 0;
-    display: flex;
+  margin: auto 0;
+  display: flex;
 }
 
 .nav-item {
-    padding: 1rem 2rem 1rem 1rem ;
-    font-size: 18px;
-    color: #EEEEEE;
+  padding: 1rem;
+  font-size: 18px;
+  color: #eeeeee;
 }
 
-.logo:hover, .nav-item:hover {
-    color: #00ADB5;
-    transition: all 500ms;
+.logo:hover,
+.nav-item:hover {
+  color: #00adb5;
+  transition: all 500ms;
 }
 
 .nav-item-playlist {
-    text-align: center;
-    border: 1px solid #00ADB5;
-    padding: 1rem;
-    font-size: 18px;
-    color: #EEEEEE;
-    border-radius: 25px;
-    transition: all 200ms;
+  margin: auto 0;
+  text-align: center;
+  border: 1px solid #00adb5;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  font-size: 18px;
+  color: #eeeeee;
+  border-radius: 25px;
+  transition: all 200ms;
 }
 
 .nav-item-playlist:hover {
-    color: white;
-    font-weight: 400;
-    background-color: #00ADB5;
-
+  color: white;
+  font-weight: 400;
+  background-color: #00adb5;
 }
 
 .search {
-    padding-right: 26rem;
-    float: right;
-    display: flex;
-    margin: auto 0;
+  padding-right: 26rem;
+  float: right;
+  display: flex;
+  margin: auto 0;
 }
 
 .search-container {
-    display: flex;
-    height: 50px;
-    width: 400px;
-    border-radius: 25px;
-    background-color: #EEEEEE;
+  display: flex;
+  height: 50px;
+  width: 400px;
+  border-radius: 25px;
+  background-color: #eeeeee;
 }
 
 .btn-search {
-    background-color: transparent;
-    border: 0;
-    border-radius: 25px;
-    height: 50px;
-    width: 50px;
-    padding: auto 0;
+  background-color: transparent;
+  border: 0;
+  border-radius: 25px;
+  height: 50px;
+  width: 50px;
+  padding: auto 0;
 }
 
 .input-search {
-    font-size: 18px;
-    height: 50px;
-    width: 320px;
-    border: 0;
-    background-color: #EEEEEE;
+  font-size: 18px;
+  height: 50px;
+  width: 320px;
+  border: 0;
+  background-color: #eeeeee;
 }
 
-textarea:focus, input:focus{
-    outline: none;
+textarea:focus,
+input:focus {
+  outline: none;
 }
 
 .recommendation-song {
-    top: 150px;
-    position: relative;
-    padding: 3rem 25rem;
-    display: flex;
-    color: #EEEEEE;
+  top: 120px;
+  position: relative;
+  padding: 3rem 25rem;
+  display: flex;
+  color: #eeeeee;
 }
 
 .song-image {
-    padding-right: 2rem;
+  padding-right: 2rem;
 }
 
 .song-image img {
-    max-width: 400px;
+  max-width: 350px;
 }
 
 .song-content {
-    margin: auto 0;
-    height: auto;
+  margin: auto 0;
+  height: auto;
 }
 
 .song-content h4 {
-    font-size: 18px;
-    letter-spacing: 1px;
-    opacity: 0.7;
+  font-size: 18px;
+  letter-spacing: 1px;
+  opacity: 0.7;
 }
 
 .song-content h1 {
-    font-size: 55px;
+  font-size: 55px;
 }
 
 .song-content p {
-    color: rgb(201, 201, 201);
-    font-size: 16px;
-    line-height: 2rem;
-    padding-bottom: 1rem;
+  color: rgb(201, 201, 201);
+  font-size: 16px;
+  line-height: 2rem;
+  padding-bottom: 1rem;
 }
 
 .recommendation-artist {
-    color: #EEEEEE;
+  color: #eeeeee;
 }
 
 .btn-recommendation {
-    margin: auto 0;
-    display: flex;
+  margin: auto 0;
+  display: flex;
 }
 
 .btn-recommendation div {
-    padding-right: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .btn-play {
-    cursor: pointer;
-    background-color: #00ADB5;
-    padding: 0.5rem 2rem;
-    width: 150px;
-    height: 50px;
-    color: #EEEEEE;
-    border: 0;
-    margin: auto 0;
-    font-size: 18px;
-    border-radius: 25px;
-    transition: all 300ms;
+  cursor: pointer;
+  background-color: #00adb5;
+  padding: 0.5rem 2rem;
+  width: 150px;
+  height: 50px;
+  color: #eeeeee;
+  border: 0;
+  margin: auto 0;
+  font-size: 18px;
+  border-radius: 25px;
+  transition: all 300ms;
 }
 
 .btn-play:hover {
-    background-color: #058e96;
+  background-color: #058e96;
 }
 
 .btn-more {
-    opacity: 0.8;
-    cursor: pointer;
-    background-color: transparent;
-    width: 50px;
-    height: 50px;
-    color: #EEEEEE;
-    border: 2.5px solid white;
-    font-size: 18px;
-    border-radius: 30px;
-    letter-spacing: 5px;
+  opacity: 0.8;
+  cursor: pointer;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  color: #eeeeee;
+  border: 2.5px solid white;
+  font-size: 18px;
+  border-radius: 30px;
+  letter-spacing: 5px;
 }
 
 .btn-play:hover {
-    transition: all 100ms;
-    opacity: 1;
+  transition: all 100ms;
+  opacity: 1;
 }
 
 main {
-    height: 100vh;
+  height: 100vh;
 }
 
 .wrapper {
-    margin: 10rem 25rem;
-    background-color: #222831;
+  margin: 10rem 25rem;
+  background-color: #222831;
 }
 
 .genre-title {
-    color: #EEEEEE;
-    font-size: 24px;
-    padding-bottom: 1rem;
+  color: #eeeeee;
+  font-size: 24px;
+  padding-bottom: 1rem;
 }
 
 .items ul {
-    display: flex;
-    flex: 1 1 0;
-    flex-wrap: wrap;
+  display: flex;
+  flex: 1 1 0;
+  flex-wrap: wrap;
 }
 
 .list-song {
-    height: 320px;
-    margin-bottom: 3rem;
-    flex: 1 1 1;
-    margin-right: 15px;
+  max-width: 200px;
+  height: auto;
+  flex: 1 1 1;
+  margin-bottom: 3rem;
+  margin-right: 15px;
 }
 
 .image {
-    width: 300px;
+  background-size: auto;
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .title {
-    color: #EEEEEE;
-    font-size: 18px;
-    padding-top: 1rem;
-    padding-bottom: 0.5rem;
+  color: #eeeeee;
+  font-size: 18px;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .artist {
-    color: #EEEEEE;
-    opacity: 0.7;
-    font-size: 16px;
+  color: #eeeeee;
+  opacity: 0.7;
+  font-size: 16px;
 }
 
 .create-playlist {
-    padding-bottom: 1rem;
-    color: #EEEEEE;
+  padding-bottom: 1rem;
+  color: #eeeeee;
 }
 
 .create-playlist h3 {
-    padding-bottom: 1rem;
-    font-size: 30px;
+  padding-bottom: 1rem;
+  font-size: 30px;
 }
 
 .playlist-form p {
-    font-size: 18px;
-    padding-top: 1rem;
-    padding-bottom: 0.5rem;
+  font-size: 18px;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
 }
 
-.description-form, .title-form {
-    width: 550px;
-    font-size: 18px;
-    border-radius: 5px;
-    padding: 1rem;
+.description-form,
+.title-form {
+  width: 550px;
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 1rem;
 }
 
 .input-form {
-    background-color: #222831;
-    height: 30px;
+  background-color: #222831;
+  height: 30px;
 }
 
 .description-form {
-    height: 200px;
-    font-size: 18px;
+  height: 200px;
+  font-size: 18px;
 }
 
 .submit-form {
-    width: 130px;
-    height: 60px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 500;
-    background-color: #00ADB5;
-    color: #EEEEEE;
-    transition: all 200ms;
+  width: 130px;
+  height: 60px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #00adb5;
+  color: #eeeeee;
+  transition: all 200ms;
 }
 
 .submit-form:hover {
-    background-color: #058e96;
+  background-color: #058e96;
 }
