@@ -1,18 +1,24 @@
 import Sidebar from "./components/Sidebar";
 import Center from "./components/Center";
+import Player from "./components/Player";
 import "./App.css";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    document.title = "Homework 4 || Spotify"
+  }, []);
   return (
-    <>
-      <main className="bg-black h-screen overflow-hidden flex">
+    <div className="bg-black h-screen overflow-hidden">
+      <main className="flex">
         <Sidebar />
         <Center />
-        {/* Center */}
       </main>
 
-      <div>{/* Player */}</div>
-    </>
+      <div className="sticky bottom-0">
+        <Player />
+      </div>
+    </div>
   );
 }
 
