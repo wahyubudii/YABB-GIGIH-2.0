@@ -1,5 +1,5 @@
 import './App.css';
-import GifGenerate from './components/Gif Generate';
+import GifGenerate from './components/gifGenerate';
 import gif from './data/index';
 
 function App() {
