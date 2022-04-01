@@ -7,28 +7,22 @@ export default function Track({tokenId, tracksData}) {
   const [token, setToken] = useState(tokenId)
   const [searchKey, setSearchKey] = useState("");
   const [tracks, setTracks] = useState(tracksData);
-
-  const BASE_URL = "https://api.spotify.com/v1";
+  const [select, setSelect] = useState(false)
+  const [uri, setUri] = useState("")
 
   useEffect(() => {
     setTracks(tracksData)
   }, [tracksData])
 
-  const searchTracks = async (e) => {
-    e.preventDefault();
-    e.target[0].value = "";
-    const { data } = await axios.get(`${BASE_URL}/search`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      params: {
-        q: searchKey,
-        type: "track,artist",
-      },
-    });
+  const selectHandle = (uri) => {
+    if (select) {
+      setSelect(false)
+    } else {
+      setSelect(true)
+    }
+  }
 
-    setTracks(data.tracks.items);
-  };
+  console.log(uri)
 
   const renderTracks = () => {
     return (
@@ -45,6 +39,7 @@ export default function Track({tokenId, tracksData}) {
           //     duration={track.duration_ms}
           //   />
           // )
+
           return (
             <div key={track.id} className="grid grid-cols-2 text-gray-500 py-4 px-1 hover:bg-gray-900 rounded-lg cursor-pointer">
               <div className="flex items-center space-x-6 mx-4">
@@ -59,10 +54,12 @@ export default function Track({tokenId, tracksData}) {
               </div>
   
               <div className="flex items-center justify-between ml-auto md:ml-0">
-                <p className="w-40 hidden md:inline truncate">
-                  {track.album.name}
-                </p>
+                <p className="w-40 hidden md:inline truncate">{track.album.name}</p>
                 <p className="pr-4">{milisToMinutesAndSeconds(track.duration_ms)}</p>
+                <button onClick={() => {setUri(track.uri)}} className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md mx-4">
+                  {uri ? "Selected" : "Select"}
+                  {/* {select ? "Selected" : "Select"} */}
+                </button>
               </div>
             </div>
           )
