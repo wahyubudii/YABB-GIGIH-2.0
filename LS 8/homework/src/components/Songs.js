@@ -22,8 +22,7 @@ export default function Songs() {
             <div className="flex items-center justify-between ml-auto md:ml-0">
               <p className="w-40 hidden md:inline truncate">{dataList.album.name}</p>
               <p>{milisToMinutesAndSeconds(dataList.duration_ms)}</p>
-              <button className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-md">Select</button>
-              {/* <p>{milisToMinutesAndSeconds(dataList.duration_ms)}</p> */}
+              <button className="bg-white hover:opacity-90 text-black px-5 py-2 rounded-lg mx-4">Select</button>
             </div>
           </div>
         );

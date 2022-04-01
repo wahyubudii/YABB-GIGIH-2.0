@@ -136,7 +136,7 @@ export default function Center({tokenId}) {
       <div className="space-y-4 pt-4">
         <div className="px-8 flex flex-col space-y-1 text-gray-500">
           {tracks.length ? (
-            <Track tokenId={tokenId} tracksData={tracks}/>
+            <Track tracksData={tracks}/>
           ) : (
             <Songs />
           )}
