@@ -3,7 +3,7 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 import { shuffle } from "lodash";
 import React, { useEffect, useState } from "react";
 import Songs from "./Songs";
-import data from "../data/data";
+import data from "../data/longData";
 import Track from "./Track";
 import axios from "axios";
 

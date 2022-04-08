@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import data from "../data/data";
-import { milisToMinutesAndSeconds } from "../data/timeConverter";
+import data from "../data/longData";
+import { milisToMinutesAndSeconds } from "../utils/timeConverter";
 
 export default function Songs() {
   const [selectedDataUri, setSelectedDataUri] = useState([])

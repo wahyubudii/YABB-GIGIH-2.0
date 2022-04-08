@@ -9,7 +9,7 @@ export default function Home({tokenId}) {
   return (
     <div>
       <main className="flex">
-        <Sidebar />
+        <Sidebar tokenId={token}/>
         {/* <Center tokenId={token} /> */}
         <CreatePlaylist tokenId={token} />
       </main>

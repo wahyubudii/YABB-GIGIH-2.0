@@ -1,7 +1,7 @@
 import { FastForwardIcon, PauseIcon, ReplyIcon, SwitchHorizontalIcon, VolumeOffIcon, VolumeUpIcon } from '@heroicons/react/outline'
 import { RewindIcon } from '@heroicons/react/solid'
 import React, { useState } from 'react'
-import data from '../data/data'
+import data from '../data/longData'
 
 function Player() {
   const [volume, setVolume] = useState(50)

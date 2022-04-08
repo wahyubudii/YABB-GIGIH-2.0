@@ -38,7 +38,7 @@ function App() {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
 
-    document.title = "Homework 8 || Spotify"
+    document.title = "Homework 7 || Spotify"
 
     if (!token && hash) {
       token = hash

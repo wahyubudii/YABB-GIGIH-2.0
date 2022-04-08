@@ -1,4 +1,4 @@
-import { milisToMinutesAndSeconds } from "../data/timeConverter";
+import { milisToMinutesAndSeconds } from "../utils/timeConverter";
 import { useEffect, useState } from "react";
 
 export default function SearchList({ data }) {

@@ -1,7 +1,9 @@
 import { SearchIcon } from "@heroicons/react/outline";
+import Swal from "sweetalert2";
 import { shuffle } from "lodash";
 import { useEffect, useState } from "react";
-import { milisToMinutesAndSeconds } from "../data/timeConverter";
+import { milisToMinutesAndSeconds } from "../utils/timeConverter";
+import {BASE_URL, USER, PLAYLIST, TRACKS, SEARCH, CURRENT_USER} from "../config/urlApi";
 import axios from "axios";
 import Header from "./Header";
 
@@ -26,33 +28,52 @@ export default function CreatePlaylist({ tokenId }) {
   const [isSelected, setIsSelected] = useState(false);
   const [addPlaylist, setAddPlaylist] = useState([]);
   const [totalDuration, setTotalDuration] = useState(0);
-  const [playlist, setPlaylist] = useState({
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [userDetails, setUserDetails] = useState([]);
+  const [playlistForm, setPlaylistForm] = useState({
       title: "",
       description: "",
-      private: true
   })
-
-  const BASE_URL = "https://api.spotify.com/v1";
 
   useEffect(() => {
     setColor(shuffle(colors).pop());
+    if (token) {
+      getUserDetails(token)
+    }
   }, []);
+
+  const getUserDetails = async (token) => {
+    try {
+      const { data } = await axios.get(`${CURRENT_USER}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+      });
+      setUserDetails(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const searchTracks = async (e) => {
     e.preventDefault();
-    e.target[0].value = "";
-    const { data } = await axios.get(`${BASE_URL}/search`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      params: {
-        q: searchKey,
-        type: "track,artist",
-      },
-    });
-
-    setArtists(data.artists.items);
-    setTracks(data.tracks.items);
+    try {
+      e.target[0].value = "";
+      const { data } = await axios.get(`${SEARCH}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          q: searchKey,
+          type: "track,artist",
+        },
+      });
+  
+      setArtists(data.artists.items);
+      setTracks(data.tracks.items);
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const toggleSelect = (track) => {
@@ -73,56 +94,77 @@ export default function CreatePlaylist({ tokenId }) {
     }
   };
 
-  const handleCreatePlaylistChange = (e) => {
+  const playlistChangeForm = (e) => {
       const {name, value} = e.target;
-      setPlaylist({...playlist, [name]: value});
+      setPlaylistForm({...playlistForm, [name]: value});
   }
 
-  const handleCreatePlaylistSubmit = (e) => {
-      e.preventDefault();
-      console.log(playlist)
+  const createPlaylist = async () => {
+    try {
+      const response = await axios.post(BASE_URL + USER + `/${userDetails.id}` + PLAYLIST, {
+        name : playlistForm.title,
+        description : playlistForm.description,
+        public : false,
+        collaborative: false
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setIsShowModal(false)
+      if(response) return response?.data?.id
+
+    } catch (error) {
+      console.log(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Can't add new playlist!",
+      })
+    } 
   }
 
-  const modalCreatePlaylist = () => {
-      return (
-        <div id="authentication-modal" tabIndex="-1" aria-hidden="true" className="items-center justify-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-            <div className="relative p-4 w-full max-w-md h-full md:h-auto">
-                <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                    <div className="flex justify-end p-2">
-                        <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">
-                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>  
-                        </button>
-                    </div>
-                    <form className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="#">
-                        <h3 className="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h3>
-                        <div>
-                            <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your title</label>
-                            <input type="title" name="title" id="title" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required />
-                        </div>
-                        <div>
-                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>
-                            <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
-                        </div>
-                        <div className="flex justify-between">
-                            <div className="flex items-start">
-                                <div className="flex items-center h-5">
-                                    <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required />
-                                </div>
-                                <div className="ml-3 text-sm">
-                                <label htmlFor="remember" className="font-medium text-gray-900 dark:text-gray-300">Remember me</label>
-                                </div>
-                            </div>
-                            <a href="#" className="text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
-                        </div>
-                        <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
-                        <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                            Not registered? <a href="#" className="text-blue-700 hover:underline dark:text-blue-500">Create account</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div> 
-       )
+  const addSongsToPlaylist = async (playlist_id) => {
+    try {
+        const response = await axios.post(BASE_URL + PLAYLIST + `/${playlist_id}` + TRACKS, {
+            uris: selectedTracksUri.map((song) => song)
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        if (response) {
+          return response?.data?.id
+        } 
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
+  const addPlaylistWithSongs = async (e) => {
+    e.preventDefault()
+    try {
+      const playlist_id = await createPlaylist()
+      if (playlist_id) {
+        const request = await addSongsToPlaylist(playlist_id)
+        setAddPlaylist([])
+        setSelectedTracksUri([])
+        setTracks([])
+        setPlaylistForm({
+          title: "",
+          description: ""
+        })
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Playlist has been created',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -234,44 +276,43 @@ export default function CreatePlaylist({ tokenId }) {
             </h1>
             <div className="flex space-x-4">
                 <div className="flex flex-col bg-gray-800 text-gray-300 w-80">
-                <form
-                    onSubmit={searchTracks}
-                    className="flex space-x-1 items-center px-3"
-                >
-                    <SearchIcon className="h-6 w-6" />
-                    <input
-                    type="text"
-                    placeholder="Search for songs"
-                    className="items-center p-2 my-1 bg-gray-800 outline-0 w-80 text-sm"
-                    onChange={(e) => setSearchKey(e.target.value)}
-                    />
-                    <button type="submit" />
-                </form>
+                  <form onSubmit={searchTracks} className="flex space-x-1 items-center px-3">
+                      <SearchIcon className="h-6 w-6" />
+                      <input
+                      type="text"
+                      placeholder="Search for songs"
+                      className="items-center p-2 my-1 bg-gray-800 outline-0 w-80 text-sm"
+                      onChange={(e) => setSearchKey(e.target.value)}
+                      />
+                      <button type="submit" />
+                  </form>
                 </div>
-                {addPlaylist.length > 0 &&
+
+                {addPlaylist.length > 0 && 
+                  <button className="block text-white bg-green-700 hover:bg-green-800 rounded-lg text-sm px-5 py-2" type="button" onClick={() => {setIsShowModal(true)}}>Create Playlist</button>
+                }
+
+                {/* Modal */}
+                {isShowModal > 0 &&
                     <>
-                        <button className="block text-white bg-green-700 hover:bg-green-800 rounded-lg text-sm px-5 py-2" type="button" data-modal-toggle="authentication-modal">Create Playlist</button>
-                        <div id="authentication-modal" tabIndex="-1" aria-hidden="true" className="flex items-center justify-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+                        <button className="block text-white bg-green-700 hover:bg-green-800 rounded-lg text-sm px-5 py-2" type="button">Create Playlist</button>
+                        <div id="authentication-modal" className="flex items-center justify-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
                             <div className="relative p-4 w-full max-w-md h-full md:h-auto">
                                 <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                     <div className="flex justify-end p-2">
-                                        <button type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-2 ml-auto inline-flex items-center" data-modal-toggle="authentication-modal">
+                                        <button onClick={() => {setIsShowModal(false)}} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-2 ml-auto inline-flex items-center">
                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>  
                                         </button>
                                     </div>
-                                    <form onSubmit={handleCreatePlaylistSubmit} className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8">
+                                    <form onSubmit={addPlaylistWithSongs} className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8">
                                         <h3 className="text-xl font-medium text-gray-300">Create your own playlist</h3>
                                         <div>
                                             <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
-                                            <input onChange={handleCreatePlaylistChange} type="text" name="title" id="title" className="outline-none bg-gray-600 border border-gray-500 text-white text-sm rounded-lg block w-full p-3" required />
+                                            <input onChange={playlistChangeForm} type="text" name="title" id="title" className="outline-none bg-gray-600 border border-gray-500 text-white text-sm rounded-lg block w-full p-3" required />
                                         </div>
                                         <div>
                                             <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-300">Description</label>
-                                            <textarea onChange={handleCreatePlaylistChange} type="text" name="description" id="description" className="outline-none bg-gray-600 border border-gray-500 text-white text-sm rounded-lg block w-full p-3" required />
-                                        </div>
-                                        <div className="flex items-center">
-                                            <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-300">Private</label>
-                                            <input onChange={handleCreatePlaylistChange} type="checkbox" name="description" id="description" className="outline-none bg-gray-600 border border-gray-500 text-white text-sm rounded-lg block w-full p-3" required />
+                                            <textarea onChange={playlistChangeForm} type="text" name="description" id="description" className="outline-none bg-gray-600 border border-gray-500 text-white text-sm rounded-lg block w-full p-3 h-32" required />
                                         </div>
                                         <button type="submit" className="w-full text-white bg-green-700 hover:bg-green-800 rounded-lg text-sm px-5 py-3 text-center">Create Playlist</button>
                                     </form>
