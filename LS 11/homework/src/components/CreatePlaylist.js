@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { milisToMinutesAndSeconds } from "../utils/timeConverter";
 import {BASE_URL, USER, PLAYLIST, TRACKS, SEARCH} from "../config/urlApi";
 import axios from "axios";
-import Header from "../components/Header";
+import Header from "./Header";
 import { useDispatch, useSelector } from "react-redux";
 import { accountSelectors, getAccount } from "../features/accountSlice";
 
