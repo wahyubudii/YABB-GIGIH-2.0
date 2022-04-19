@@ -8,6 +8,9 @@ import Track from "./Track";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Header from "./Header";
+import { RootState } from "../app/store";
+import { ResponseTracks } from "../api/Tracks";
+import { ResponseArtists } from "../api/Artists";
 
 const colors = [
   "from-indigo-500",
@@ -20,11 +23,11 @@ const colors = [
 ];
 
 export default function Center() {
-  const { token } = useSelector(state => state.token)
-  const [color, setColor] = useState(null);
+  const { token } = useSelector((state: RootState) => state.token)
+  const [color, setColor] = useState<any>(null);
   const [searchKey, setSearchKey] = useState("");
-  const [artists, setArtists] = useState([]);
-  const [tracks, setTracks] = useState([]);
+  const [artists, setArtists] = useState<ResponseArtists>([]);
+  const [tracks, setTracks] = useState<ResponseTracks>([]);
 
   const BASE_URL = "https://api.spotify.com/v1";
   
@@ -35,7 +38,7 @@ export default function Center() {
   const searchTracks = async (e) => {
     e.preventDefault();
     e.target[0].value = "";
-    const data = await axios.get(`${BASE_URL}/search`, {
+    const { data } = await axios.get(`${BASE_URL}/search`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -45,12 +48,9 @@ export default function Center() {
       },
     });
 
-    // setArtists(data.artists.items);
-    setTracks(data);
-    console.log(data)
+    setArtists(data.artists.items);
+    setTracks(data.tracks.items);
   };
-
-  // console.log(tracks)
 
   return (
     <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide responsive">
